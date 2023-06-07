@@ -557,3 +557,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+api_keys.py
