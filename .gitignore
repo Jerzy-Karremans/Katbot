@@ -175,3 +175,4 @@ cython_debug/
 api_keys.py
 
 .vscode
+Scripts
