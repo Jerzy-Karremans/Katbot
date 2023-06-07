@@ -1,6 +1,6 @@
 import os
 import openai
-from config import API_KEYS
+from config.config import API_KEYS
 
 openai.api_key = os.getenv(API_KEYS["openApi"])
 
