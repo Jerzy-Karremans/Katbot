@@ -14,11 +14,17 @@ if errorlevel 1 (
     exit /b 1
 )
 
-REM Clone the GitHub repository
-git clone https://github.com/Jerzy-Karremans/Katbot
+REM Check if the Katbot directory exists
+if not exist ..\..\Katbot\ (
+    REM Clone the GitHub repository
+    git clone https://github.com/Jerzy-Karremans/Katbot
+    cd Katbot
+) else (
+    REM Change directory to the cloned repository
+    cd ..\
+)
 
 REM Change directory to the cloned repository
-cd Katbot
 mkdir config
 
 REM Create a virtual environment
@@ -41,12 +47,6 @@ echo Created a default api_keys.py file. Please update the API keys in 'config\a
 
 REM Deactivate the virtual environment
 deactivate
-
-REM Provide instructions for further steps
-echo.
-echo Katbot environment has been set up successfully!
-echo To start the application, run the following command:
-echo    env\Scripts\activate.bat && python src\bot.py
 
 REM Pause the script to prevent the terminal from closing immediately
 pause
