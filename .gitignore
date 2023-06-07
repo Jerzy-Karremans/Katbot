@@ -173,3 +173,5 @@ cython_debug/
 #.idea/
 
 api_keys.py
+
+.vscode
