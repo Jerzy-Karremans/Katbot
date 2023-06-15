@@ -1,22 +1,21 @@
 import speech_recognition as sr
-
-def get_microphone():
-    for index, name in enumerate(sr.Microphone.list_microphone_names()):
-        print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
-
-AUDIO_FILE = "fixtures\Gloria Gaynor - I Will Survive (Official Music Video).wav"
+import json
+with open("./config/api_keys.json", "r") as f:
+  jsonString = json.load(f)
+  apiKey = jsonString["openApi"]
 
 r = sr.Recognizer()
-with sr.AudioFile(AUDIO_FILE) as source:
-    audio = r.record(source)  # read the entire audio file
 
-# recognize speech using Google Speech Recognition
-try:
-    # for testing purposes, we're just using the default API key
-    # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
-    # instead of `r.recognize_google(audio)`
-    print("Google Speech Recognition thinks you said " + r.recognize_whisper(audio))
-except sr.UnknownValueError:
-    print("Google Speech Recognition could not understand audio")
-except sr.RequestError as e:
-    print("Could not request results from Google Speech Recognition service; {0}".format(e))
+while True:
+    try:
+        with sr.Microphone() as mic:
+            r.adjust_for_ambient_noise(mic, duration=0.1)
+            audio = r.listen(mic)
+
+            text = r.recognize_whisper_api(audio,api_key=apiKey)
+            text = text.lower()
+            print(text)
+        pass
+    except:
+        r = sr.Recognizer()
+        continue

@@ -44,3 +44,5 @@ The startup script will create a `config.py` file that stores the OpenAI API key
 If you encounter any issues or have questions, please feel free to [open an issue](https://github.com/Jerzy-Karremans/Katbot/issues) in this repository.
 
 Happy botting!
+
+ps to update requirements.txt pip freeze > requirements.txt
