@@ -39,11 +39,11 @@ python -m pip install --upgrade pip
 REM Install the requirements and dependencies
 python -m pip install -r requirements.txt
 
-REM Create the api_keys.py file
-echo API_KEYS = {> config\api_keys.py
-echo    'openApi': 'your_api_key_1'>> config\api_keys.py
-echo }>> config\api_keys.py
-echo Created a default api_keys.py file. Please update the API keys in 'config\api_keys.py' with your actual keys.
+REM Create the api_keys.json file
+echo {> config\api_keys.json
+echo    "openApi": "your_api_key_1">> config\api_keys.json
+echo }>> config\api_keys.json
+echo Created a default api_keys.json file. Please update the API keys in 'config\api_keys.json' with your actual keys.
 
 REM Deactivate the virtual environment
 deactivate
