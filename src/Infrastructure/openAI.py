@@ -1,15 +1,23 @@
 import os
 import openai
-from config.config import API_KEYS
+import json
 
-openai.api_key = os.getenv(API_KEYS["openApi"])
+with open("./config/api_keys.json", "r") as f:
+  jsonString = json.load(f)
+  apiKey = jsonString["openApiKey"]
 
-openai.ChatCompletion.create(
-  model="gpt-3.5-turbo",
-  messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Who won the world series in 2020?"},
-        {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
-        {"role": "user", "content": "Where was it played?"}
-    ]
+openai.organization = "org-E5fBkLKUR35vUYShL5MWDtO2"
+openai.api_key = apiKey
+
+response = openai.Completion.create(
+  model="text-davinci-003",
+  prompt="You: What have you been up to?\nFriend: Watching old movies.\nYou: Did you watch anything interesting?\nFriend:",
+  temperature=0.5,
+  max_tokens=60,
+  top_p=1,
+  frequency_penalty=0.5,
+  presence_penalty=0,
+  stop=["You:"]
 )
+
+print(response["choices"][0]["text"])
