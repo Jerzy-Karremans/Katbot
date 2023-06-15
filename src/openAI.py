@@ -4,9 +4,8 @@ import json
 
 with open("./config/api_keys.json", "r") as f:
   jsonString = json.load(f)
-  apiKey = jsonString["openApiKey"]
-
-openai.organization = "org-E5fBkLKUR35vUYShL5MWDtO2"
+  apiKey = jsonString["openApi"]
+  
 openai.api_key = apiKey
 
 response = openai.Completion.create(
