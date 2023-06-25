@@ -41,7 +41,9 @@ python -m pip install -r requirements.txt
 
 REM Create the api_keys.json file
 echo {> config\api_keys.json
-echo    "openApi": "your_api_key_1">> config\api_keys.json
+echo    "openApi": "your_open_api_key",>> config\api_keys.json
+echo    "elevenlabs": "your_eleven_api_key",>> config\api_keys.json
+echo    "usingEleven": false>> config\api_keys.json
 echo }>> config\api_keys.json
 echo Created a default api_keys.json file. Please update the API keys in 'config\api_keys.json' with your actual keys.
 
