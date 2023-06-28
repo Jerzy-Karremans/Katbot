@@ -3,6 +3,7 @@ import json
 import speech_recognition as sr
 import pyttsx3
 from elevenlabs import generate, play,set_api_key
+from src.lcd import LCD
 
 def load_api_keys():
     with open("./config/api_keys.json", "r") as f:
@@ -49,15 +50,17 @@ def setup_speech_engine():
 
 def main():
     r = sr.Recognizer()
+    lcd = LCD()
     engine = setup_speech_engine()
     open_api_key,usingEleven = load_api_keys()
     while True:
+        lcd.write_line2("Listening",2)
         try:
             text = speech_to_text(r)
             if text == "" or text =="you" or text.isalpha() or text == "thank you.":
                 print("misinput                                                                                                    |")
                 continue
-            print("You: " + text)
+            lcd.write_line2("Talking",2)
             response = prompt_gpt(text,open_api_key)
             print("GPT: " + response)
             if usingEleven:
